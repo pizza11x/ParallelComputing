@@ -1,1 +1,1 @@
-# ParallelComputing
+# Parallel computing exercises
