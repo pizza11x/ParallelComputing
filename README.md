@@ -15,5 +15,5 @@ At launch, use the "time" command: time ./name-executable
 
 At the output you can see:
 -real: wall-clock time or elapsed-time. Is the time actually elapsed from the start to the end of the launch.
--user: is the time spend in user mode.
--sys: is the time spend in services of system.
+-user: is the time spend in user mode (memory access).
+-sys: is the time spend in services of system (I/O).
