@@ -15,11 +15,11 @@ int main()
     int i, quantity, threads, localQuantity, rest, id, step;
     float sumtot, sum, *container;
     sumtot = 0;
-    printf("Inserire N\n");
+    printf("How many nymbers do you want to sum?\n");
     scanf("%d", &quantity);
     /*Dynamic allocation based on how many numbers the user has chosen*/
     container = (float *)calloc(quantity, sizeof(float));
-    printf("Inserire i numeri da sommare\n");
+    printf("Please enter a number to sum:\n");
     for(i=0; i<quantity; i++)
     {
        scanf("%f", &container[i]);
@@ -47,6 +47,6 @@ int main()
        }
        sumtot = sumtot + sum;
     }
-    printf("Somma totale: %f\n", sumtot);
+    printf("Total sum: %f\n", sumtot);
     return 0;
 }
