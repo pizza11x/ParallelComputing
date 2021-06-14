@@ -52,7 +52,7 @@ int main()
        t1 = omp_get_wtime();
     }
     t_tot= t1-t0;
-    printf("Somma totale: %f\n", sumtot);
-    printf("Tempo totale: %f\n", t_tot);
+    printf("Total sum: %f\n", sumtot);
+    printf("Total time: %f\n", t_tot);
     return 0;
 }
