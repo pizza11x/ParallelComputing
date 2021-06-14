@@ -9,11 +9,11 @@ int main()
     int i, quantity, threads, localQuantity, rest, id, step;
     float sumtot, sum, *container, t0, t1, t_tot;
     sumtot = 0;
-    printf("Inserire N\n");
+    printf("How many numbers do you want to sum?\n");
     scanf("%d", &quantity);
     /*Dynamic allocation based on how many numbers the user has chosen*/
     container = (float *)calloc(quantity, sizeof(float));
-    printf("Inserire i numeri da sommare\n");
+    printf("Please enter a number to sum:\n");
     for(i=0; i<quantity; i++)
     {
        scanf("%f", &container[i]);
@@ -45,7 +45,7 @@ int main()
        sum = 0;
        for(i=0; i<localQuantity; i++)
         {
-         printf("sono %d, di %d: numeri %d, r=%d, passo=%d\n", id, threads, localQuantity, rest, step);
+         printf("I'm %d, of %d: numbers %d, rest=%d, pass=%d\n", id, threads, localQuantity, rest, step);
          sum = sum+container[i+localQuantity*omp_get_thread_num()+step];
         }
        sumtot+=sum;
