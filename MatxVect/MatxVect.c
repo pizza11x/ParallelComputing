@@ -21,9 +21,9 @@ int main()
     double *b;
     double *x;
 
-    printf("Inserire il numero di righe della matrice A: ");
+    printf("Insert the rows of the A matrix : ");
     scanf("%d", &n);
-    printf("Inserire il numero di colonne della matrice A: ");
+    printf("Insert the columns of the A matrix: ");
     scanf("%d", &m);
     /*Allocation of matrix A with filling of random numbers from 1 to 100*/
     A = (double **)calloc(n, sizeof(double *));
