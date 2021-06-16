@@ -21,6 +21,6 @@ int main()
         sleep(i);
         printf("The thread %d has completed the iteration %d\n", omp_get_thread_num(), i);
     }
-    printf("Tutti i thread hanno terminato!\n");
+    printf("All threads have ended!\n");
     return 0;
 }
