@@ -62,6 +62,9 @@ int main()
     for(i=0; i < n; i++){
             printf("[%f]\t", b[i]);
     }
+    free(x);
+    free(b);
+    free(A);
     return 0;
 
 }
