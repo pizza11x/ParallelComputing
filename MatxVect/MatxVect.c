@@ -38,7 +38,7 @@ int main()
     }
     /*Allocation of vector b and x with filling the vector x of random numbers from 1 to 100*/
     b = (double *)calloc(n, sizeof(double));
-    x = (double *)calloc(n, sizeof(double));
+    x = (double *)calloc(m, sizeof(double));
     for(i=0; i < n; i++){
             x[i] = 1+rand()%100;
     }
@@ -52,7 +52,7 @@ int main()
     }
     /*Stamp vector x*/
     printf("\nThe vector x is\n");
-    for(i=0; i < n; i++){
+    for(i=0; i < m; i++){
             printf("[%f]\t", x[i]);
     }
     /*Calculate the solution vector with the function*/
@@ -87,7 +87,7 @@ double *matxvet(int n, int m, double *vect, double **matrix)
     for (i=0; i<n; i++)
     {
         for(j=0; j<m; j++)
-            sol[i] += matrix[i][j]*vect[i];
+            sol[i] += matrix[i][j]*vect[j];
     }
 
     return sol;
