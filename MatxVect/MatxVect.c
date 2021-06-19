@@ -27,14 +27,14 @@ int main()
     srand(time(NULL)); 
     for(i=0; i < n; i++){
         for(j=0; j < m; j++){
-            A[(i*m)+j]= (double)((rand()%1000)+1)/100;
+            A[(i*m)+j]= (double)((rand()%1000)+1)/1000;
         }
     }
     /*Allocation of vector b and x with filling the vector x of random numbers*/
     b = (double *)malloc(n*sizeof(double));
     x = (double *)malloc(m*sizeof(double));
     for(i=0; i < m; i++){
-            x[i] = (double)((rand()%1000)+1)/100;
+            x[i] = (double)((rand()%1000)+1)/1000;
     }
     /*Stamp matrix  A*/
     printf("\nThe matrix A is:\n");
