@@ -16,10 +16,12 @@ where:
 -R is a vector that will contain the "i" results.
 
 subsequently we have to make the product of the elements of the vector R.
+
+The ops variable, is used to calculate the number of operations performed to resolve the problem
 */
 
 int main(){
-    int i, j, alpha, beta, t, n, m;
+    int i, j, alpha, beta, t, n, m, ops;
     double *A, *b, *a, *R, p=1, t0, t1, temptot;
     /*
     We ask in input the number of threads to use, it is recommended to use an even number of threads, 
@@ -89,6 +91,16 @@ int main(){
             the sum of the products of alpha * A[i][j] * b[j]
             */
             R[i]+=alpha*A[(i*m)+j]*b[j];
+
+            /*
+            TheThe atomic directive is used for mutual exclusion access, 
+            it locks at the hardware level and has little overhead. 
+            It is possible to use the critical directive as an alternative, 
+            which always allows access in mutual exclusion but performs a lock at the user level, 
+            with a high overhead.
+            */
+            #pragma omp atomic
+            ops = ops + 1;
         }
         /*
         Calculate the second part of the problem, we add the i-th position of R
@@ -103,7 +115,6 @@ int main(){
 
     //Calculate the time performed in parallel
     t1=omp_get_wtime();
-    //Calculate the Elapsed time
     temptot=t1-t0;
 
     //Stamp the R vector
@@ -112,9 +123,9 @@ int main(){
             printf("[%f]\t", R[i]);
     }
 
-    //Stamp the result and the Elapsed time.
+    //Stamp the result and the Elapsed time and the number of operations.
     printf("\n\nThe result is: %f\n", p);
-    printf("\nElapsed Time: %lfs \n", temptot);
+    printf("\nElapsed Time: %lfs \nOps = %d\n", temptot, ops);
 
     //Free memory
     free(A);
