@@ -36,9 +36,9 @@ int main()
         }
     }
     /*Allocation of vector b and x with filling the vector x of random numbers from 1 to 100*/
-    b = (double *)calloc(n, sizeof(double));
-    x = (double *)calloc(m, sizeof(double));
-    for(i=0; i < n; i++){
+    b = (double *)malloc(n*sizeof(double));
+    x = (double *)malloc(m*sizeof(double));
+    for(i=0; i < m; i++){
             x[i] = 1+rand()%100;
     }
     /*Stamp matrix  A*/
@@ -75,7 +75,7 @@ double *matxvet(int n, int m, double *vect, double *matrix)
     int i, j;
     double *sol;
     /*the solution vector must be allocated by the number of rows*/
-    sol = (double *)calloc(n, sizeof(double));
+    sol = (double *)malloc(n*sizeof(double));
 
     /*
     -dafault(none): Specifies the behavior of unscoped variables in a parallel region.
