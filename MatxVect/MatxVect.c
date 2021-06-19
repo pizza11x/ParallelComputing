@@ -1,3 +1,15 @@
+#include <stdlib.h>
+#include <omp.h>
+#include <math.h>
+#include <time.h> 
+/*
+This is a function to calculate the product of a matrix by a vector.
+You have to call it in a main program.
+-n: rows
+-m: columns
+*/
+double *matxvet(int n, int m, double *vect, double **matrix);
+
 int main()
 {
     int n, m, i, j;
