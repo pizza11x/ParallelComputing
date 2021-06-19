@@ -1,3 +1,4 @@
+#include <stdio.h>
 #include <stdlib.h>
 #include <omp.h>
 #include <math.h>
@@ -8,7 +9,7 @@ You have to call it in a main program.
 -n: rows
 -m: columns
 */
-double *matxvet(int n, int m, double *vect, double **matrix);
+double *matxvet(int n, int m, double *vect, double *matrix);
 
 int main()
 {
@@ -26,7 +27,7 @@ int main()
     srand(time(NULL)); 
     for(i=0; i < n; i++){
         for(j=0; j < m; j++){
-            A[(i*n)+j]= (double)((rand()%1000)+1)/100;
+            A[(i*m)+j]= (double)((rand()%1000)+1)/100;
         }
     }
     /*Allocation of vector b and x with filling the vector x of random numbers*/
@@ -39,7 +40,7 @@ int main()
     printf("\nThe matrix A is:\n");
     for(i=0; i < n; i++){
         for(j=0; j < m; j++){
-            printf("[%f]\t", A[(i*n)+j]);
+            printf("[%f]\t", A[(i*m)+j]);
         }
         printf("\n");
     }
@@ -79,7 +80,7 @@ double *matxvet(int n, int m, double *vect, double *matrix)
     for (i=0; i<n; i++)
     {
         for(j=0; j<m; j++)
-            sol[i] += matrix[(i*n)+j]*vect[j];
+            sol[i] += matrix[(i*m)+j]*vect[j];
     }
 
     return sol;
