@@ -7,17 +7,16 @@
 /*
 This is a function to calculate the product of a matrix by a vector.
 You have to call it in a main program.
-
 -n: rows
 -m: columns
 */
 
-double *matxvet(int n, int m, double *vect, double **matrix);
+double *matxvet(int n, int m, double *vect, double *matrix);
 
 int main()
 {
     int n, m, i, j;
-    double **A;
+    double *A;
     double *b;
     double *x;
 
@@ -26,14 +25,14 @@ int main()
     printf("Insert the columns of the A matrix: ");
     scanf("%d", &m);
     /*Allocation of matrix A with filling of random numbers from 1 to 100*/
-    A = (double **)calloc(n, sizeof(double *));
-    for (i=0; i < n; i++){
+    A = (double *)malloc((n*m)*sizeof(double ));
+    /*for (i=0; i < n; i++){
         A[i] = (double *)calloc(m, sizeof(double));
-    }
+    }*/
     srand(time(NULL)); 
     for(i=0; i < n; i++){
         for(j=0; j < m; j++){
-            A[i][j]= 1+rand()%100;
+            A[(i*n)+j]= 1+rand()%100;
         }
     }
     /*Allocation of vector b and x with filling the vector x of random numbers from 1 to 100*/
@@ -46,7 +45,7 @@ int main()
     printf("\nThe matrix A is:\n");
     for(i=0; i < n; i++){
         for(j=0; j < m; j++){
-            printf("[%f]\t", A[i][j]);
+            printf("[%f]\t", A[(i*n)+j]);
         }
         printf("\n");
     }
@@ -71,7 +70,7 @@ int main()
 
 
 
-double *matxvet(int n, int m, double *vect, double **matrix)
+double *matxvet(int n, int m, double *vect, double *matrix)
 {
     int i, j;
     double *sol;
@@ -81,13 +80,12 @@ double *matxvet(int n, int m, double *vect, double **matrix)
     /*
     -dafault(none): Specifies the behavior of unscoped variables in a parallel region.
     only the index i and j are private.
-
     */
     #pragma omp parallel for default(none) shared(sol, matrix, vect, m, n) private(i, j)
     for (i=0; i<n; i++)
     {
         for(j=0; j<m; j++)
-            sol[i] += matrix[i][j]*vect[j];
+            sol[i] += matrix[(i*n)+j]*vect[j];
     }
 
     return sol;
