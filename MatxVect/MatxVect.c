@@ -1,18 +1,3 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <omp.h>
-#include <math.h>
-#include <time.h> 
-
-/*
-This is a function to calculate the product of a matrix by a vector.
-You have to call it in a main program.
--n: rows
--m: columns
-*/
-
-double *matxvet(int n, int m, double *vect, double *matrix);
-
 int main()
 {
     int n, m, i, j;
@@ -24,22 +9,19 @@ int main()
     scanf("%d", &n);
     printf("Insert the columns of the A matrix: ");
     scanf("%d", &m);
-    /*Allocation of matrix A with filling of random numbers from 1 to 100*/
+    /*Allocation of matrix A with filling of random numbers */
     A = (double *)malloc((n*m)*sizeof(double ));
-    /*for (i=0; i < n; i++){
-        A[i] = (double *)calloc(m, sizeof(double));
-    }*/
     srand(time(NULL)); 
     for(i=0; i < n; i++){
         for(j=0; j < m; j++){
-            A[(i*n)+j]= 1+rand()%100;
+            A[(i*n)+j]= (double)((rand()%1000)+1)/100;
         }
     }
-    /*Allocation of vector b and x with filling the vector x of random numbers from 1 to 100*/
+    /*Allocation of vector b and x with filling the vector x of random numbers*/
     b = (double *)malloc(n*sizeof(double));
     x = (double *)malloc(m*sizeof(double));
     for(i=0; i < m; i++){
-            x[i] = 1+rand()%100;
+            x[i] = (double)((rand()%1000)+1)/100;
     }
     /*Stamp matrix  A*/
     printf("\nThe matrix A is:\n");
@@ -52,7 +34,7 @@ int main()
     /*Stamp vector x*/
     printf("\nThe vector x is\n");
     for(i=0; i < m; i++){
-            printf("[%f]\t", x[i]);
+            printf("[%f]\n", x[i]);
     }
     /*Calculate the solution vector with the function*/
     b = matxvet(n,m,x,A);
