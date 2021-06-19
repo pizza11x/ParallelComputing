@@ -103,6 +103,7 @@ int main(){
 
     //Calculate the time performed in parallel
     t1=omp_get_wtime();
+    //Calculate the Elapsed time
     temptot=t1-t0;
 
     //Stamp the R vector
