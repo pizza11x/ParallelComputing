@@ -31,18 +31,19 @@ int main()
 
 int binarySearch(int left, int right, int t, int token, int *a)
 {
-    int index = -1, result;
+    int result=-1;
     int size = (right - left + 1 ) / 2;
-
     if(size == 0){
-        if(a[left] == token)
-            index = left;
-        
-        return index;
+        if(a[left] != token)
+        {
+            return -1;
+        }else{
+            return left;
+        }
     }
     omp_set_num_threads(t);
     omp_set_nested(1);
-    #pragma omp parallel shared(a, token, left, right, size, index, result)
+    #pragma omp parallel shared(a, token, left, right, size)
     {
         int id = omp_get_thread_num();
         int leftThread = left + id * size;
