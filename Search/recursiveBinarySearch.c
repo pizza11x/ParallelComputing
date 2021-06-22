@@ -32,12 +32,16 @@ int main()
 int binarySearch(int left, int right, int t, int token, int *a)
 {
     int result=-1;
-    int size = (right - left + 1 ) / 2;
+    //Size is the sub-portion that each individual thread must check
+    int size = (right - left + 1 ) / 2; 
+    //CCheck if the thread is looking on only one field
     if(size == 0){
         if(a[left] != token)
         {
+            //if token was not found return -1
             return -1;
         }else{
+            //else return the value of element
             return left;
         }
     }
@@ -45,12 +49,14 @@ int binarySearch(int left, int right, int t, int token, int *a)
     omp_set_nested(1);
     #pragma omp parallel shared(a, token, left, right, size)
     {
+        //Calculates the extremes that each thread must have, using the value of the id
         int id = omp_get_thread_num();
         int leftThread = left + id * size;
         int rightThread = leftThread + size - 1;
         if( id == t-1)
             rightThread = right;
-
+        /*If the thread finds it checks that the key is within its range,
+        then it calls the same function with the updated values of its portion*/
         if(a[leftThread] <= token && a[rightThread] >= token)
         {
             result = binarySearch(leftThread, rightThread, t, token, a);
