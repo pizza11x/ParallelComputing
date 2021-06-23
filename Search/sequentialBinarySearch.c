@@ -34,6 +34,7 @@ int main()
     else
         printf("\nThe number is in the position: %d\n", result+1);
 
+    free(a);
     return 0;
 }
 
