@@ -48,5 +48,6 @@ int main()
        sumtot = sumtot + sum;
     }
     printf("Total sum: %f\n", sumtot);
+    free(container);
     return 0;
 }
