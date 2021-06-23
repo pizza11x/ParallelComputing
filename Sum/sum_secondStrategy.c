@@ -54,5 +54,6 @@ int main()
     t_tot= t1-t0;
     printf("Total sum: %f\n", sumtot);
     printf("Total time: %f\n", t_tot);
+    free(container);
     return 0;
 }
