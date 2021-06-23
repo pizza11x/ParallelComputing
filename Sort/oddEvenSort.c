@@ -30,7 +30,8 @@ int main(){
     {
         printf("[%d]\t", a[i]);
     }
-    return 0;
+   free(a);
+   return 0;
 }
 
 void oddEvenSort(int *a, int size)
