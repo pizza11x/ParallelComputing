@@ -23,16 +23,12 @@ int main()
         printf("\n");
     }
     t0=omp_get_wtime();
-    #pragma omp parallel shared(A,R,p,N) private(i,j,countRow) reduction(+:sumRow) num_threads(p)
+    #pragma omp parallel shared(A,R,p,N) private(i,countRow) reduction(+:sumRow) num_threads(p)
     {
         int id = omp_get_thread_num();
         countRow = (id*2)+1;
-        int localSize = N/p;
-        for(j=0; j<localSize; j++)
-        {
-            for(i=0; i<N; i++){
-                sumRow+=A[countRow*N+i];
-            }
+        for(i=0; i<N; i++){
+           sumRow+=A[countRow*N+i];
         }
         R[id]=sumRow;
         t1=omp_get_wtime();
