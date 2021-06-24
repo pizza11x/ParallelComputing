@@ -23,7 +23,7 @@ int main()
         printf("\n");
     }
     t0=omp_get_wtime();
-    #pragma omp parallel shared(A,R,p,N) private(i,j, step,countRow) reduction(+:sumRow) num_threads(p)
+    #pragma omp parallel shared(A,R,p,N) private(i,j,countRow) reduction(+:sumRow) num_threads(p)
     {
         int id = omp_get_thread_num();
         countRow = (id*2)+1;
